@@ -1,10 +1,7 @@
 "use strict";
 
-let num = 20;
-function showFirstMessage(text) {
-	console.log(text);
-	num = 10;
-}
+const str = "test";
+const arr = [1, 2, 4];
 
-showFirstMessage("Hello World!");
-console.log(num);
+console.log(arr.length);//длина строки
+
