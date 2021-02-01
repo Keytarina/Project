@@ -1,69 +1,54 @@
 "use strict";
 
-let numberOfFilms;
-
-function start() {
-	numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
-
-	while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
-		numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
-	}
+function learnJS(lang, callback) {
+	console.log(`Я учу: ${lang}`);
+	callback();
 }
 
-// start();
+function done() {
+	console.log('Я прошла этот урок');
+}
 
-const personalMovieDB = {
-	count: numberOfFilms,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false
-};
+learnJS('JavaScript', done); //не вызываем функцию done, а передаем
+//////////////////////////////////////
+let menu = {
+	width: 200,
+  	height: 300,
+  	title: "My menu"
+}
 
-function rememberMyFilms() {
-	for (let i = 0; i < 2; i++) {
-		const film = prompt("Один из просмотреных фильмов?",""),
-			filmRating = prompt("Насколько оцените его?","");
-	
-		if (film != null && filmRating != null && film != ""  && filmRating != "" && film.length < 50) {
-			personalMovieDB.movies[film] = filmRating;
-			console.log("Done");
-		} else {
-			console.log("Error");
-			i--;
+function multiplyNumeric(obj) {
+	for (let key in obj) {
+		if(typeof(obj[key]) === 'number') {
+			obj[key] *= 2;
 		}
 	}
 }
 
-// rememberMyFilms();
+multiplyNumeric(menu);
 
-function detectPersonalLevel() {
-	if (personalMovieDB.count < 10) {
-		console.log("Просмотрено довольно мало фильмов");
-	} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-		console.log("Вы классический зритель");
-	} else if (personalMovieDB.count >= 30) {
-		console.log("Вы киноман");
-	} else {
-		console.log("Произошла ошибка");
-	}
-}
+console.log(menu);
 
-// detectPersonalLevel();
+// function isEmpty(obj) {
+// 	for (let key in obj) {
+// 	  // если тело цикла начнет выполняться - значит в объекте есть свойства
+// 	  return false;
+// 	}
+// 	return true;
+//   }
 
-function showMyDB(hidden) {
-	if (!hidden) {
-		console.log(personalMovieDB);
-	}
-}
+console.log( multiplyNumeric(menu) );
 
-showMyDB(personalMovieDB.privat);
+// function sumSalaries(obj) {
+// 	let sum = 0;
+// 	if (isEmpty(obj) == true) {
+// 		return sum;
+// 	} else {
+// 		for (let key in obj) {
+// 			sum += obj[key]; 
+// 		}
+// 	}
+// 	return sum;
+// }
 
-function writeYourGenres() {
-	for (let i = 1; i < 4; i++) {
-		personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i}?`,"");
-	}
-	console.log(personalMovieDB);
-}
 
-writeYourGenres();
